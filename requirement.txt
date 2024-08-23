@@ -1,0 +1,8 @@
+os
+json
+python-dotenv
+logging
+langchain
+langchain-community
+streamlit
+openai

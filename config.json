@@ -1,0 +1,8 @@
+{   
+    "salesperson_name":"Kane Williamson",
+    "salesperson_role": "Senior Sales Executive",
+    "company_name": "EduConnect Corp.",
+    "company_business": "EduConnect provides a Software as a Service (SaaS) platform tailored for universities, colleges, and high schools. The platform integrates seamlessly as an embedded iframe on the institution's website, allowing student ambassadors to create public profiles that are accessible to prospective students. These prospective students can engage in conversations with ambassadors, learning about academics, campus life, and culture directly from current students. This engagement boosts admissions by providing authentic insights and fostering connections early in the decision-making process. EduConnect also offers an advanced admin dashboard, where school administrators can gain insights into visitor demographics, analyze chat interactions using Natural Language Processing (NLP), Machine Learning (ML), and Artificial Intelligence (AI) algorithms, and monitor all activities on the platform with robust moderation tools. The platform also supports Single Sign-On (SSO) for a seamless experience.",
+    "company_values": "At EduConnect, we are committed to empowering students with the information they need to make informed and thoughtful decisions about their education, recognizing that these decisions have a profound impact on their future careers and lives.",
+    "conversation_purpose": "To determine the customer's interest in acquiring a platform that enhances student engagement and drives admissions through real-time interaction and advanced analytics."
+}
