@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY') # Enter Your OPENAI API Key in .env
+
 with open("config.json","r") as f:
     config=json.load(f)
 
@@ -42,14 +43,15 @@ stage_analyzer_prompt= PromptTemplate(template="""Determine the next conversatio
                                            input_variables=["conversation_history","conversation_stages"])
 sales_conversation_prompt = PromptTemplate(template="""You are {salesperson_name}, a {salesperson_role} at {company_name}.
                                            Company Business: {company_business}
-                                           Company Values: {comapny_values}
+                                           Company Values: {company_values}
                                            Your Purpose is to {conversation_purpose}
                                            current conversation stage: {conversation_stage}
 
                                            Conversation History: {conversation_history}
                                            
                                            Response as {salesperson_name}: """,
-                                           input_variables=["salesperson_name","salesperson_role","company_name","company_business","comapny_values",
+                                           input_variables=["salesperson_name","salesperson_role","company_name",
+                                                            "company_business","company_values",
                                                             "conversation_purpose","conversation_stage","conversation_history"])
 
 stage_analyzer_chain = LLMChain(llm=llm,prompt=stage_analyzer_prompt)
@@ -61,8 +63,8 @@ def determine_conversation_stage(conversation_history):
     logger.info(f"Function determine_conversation_stage : {result}")
     return conversation_stages.get(result,conversation_stages['1'])
 
-def generate_response(conversation_history,current_stages):
-    return sales_conversation_chain.run(**config,conversation_stages=current_stages,
+def generate_response(conversation_history, current_stage):
+    return sales_conversation_chain.run(**config, conversation_stage=current_stage,
                                         conversation_history='\n'.join(conversation_history))
 
 def main():
@@ -90,10 +92,10 @@ def main():
             st.write(prompt)
             logger.info(f"Function main Users message : {prompt}")
         
-        st.session_state.current_stage == determine_conversation_stage([m['content'] for m in st.session_state.conversation_history])
+        st.session_state.current_stage = determine_conversation_stage([m['content'] for m in st.session_state.conversation_history])
 
         with st.chat_message("assistant"):
-            response = generate_response([m["content"] for m in st.session_state.conversation_history],st.session_state.current_stage)
+            response = generate_response([m["content"] for m in st.session_state.conversation_history], st.session_state.current_stage)
             st.write(response)
             logger.error(f"Function main assistant Responses: {response}")
         st.session_state.conversation_history.append({'role':"assistant","content":response})
