@@ -110,6 +110,6 @@ This application is a Streamlit-based chat interface that simulates a conversati
 - Implement a feedback mechanism to improve the agent's responses over time.
 - Using Llama or other models with LangChain: Yes, we can use other language models like Llama with LangChain. Here's how we might modify the code to use a different model:
 
-![alt text](llama-1.png)
+![alt text](llama.png)
 
 This documentation provides an overview of the application's structure, key components, and functionality. It can serve as a guide for understanding, using, and potentially extending the sales agent application.
